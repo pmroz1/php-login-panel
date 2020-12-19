@@ -1,0 +1,15 @@
+*{
+    background-color: rgb(40, 44, 51);
+}
+
+.loginForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#authForm{
+    color: rgb(235, 237, 221);
+    width: 40%;
+}
