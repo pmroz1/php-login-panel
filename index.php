@@ -30,6 +30,10 @@
                 <div class="d-flex justify-content-right h-100">
                     <a href="./resetView.html">Reset Password</a>
                 </div>
+
+                <div class="d-flex justify-content-right h-100">
+                    <a href="./register.php">Create account</a>
+                </div>
                 <div class="d-flex justify-content-center h-100">
                     <button id="login" type="submit" class="btn btn-primary">Login</button>
                 </div>
