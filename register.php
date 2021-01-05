@@ -60,15 +60,30 @@ require_once('config.php');
                 if(isValid){
                     e.preventDefault() // prevent from sending
                     alert("valid form")
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'backend.php',
+                        data: {
+                            firstname: firstname,
+                            email: email,
+                            password: password
+                        },
+                        success: function(data){
+                            alert("Ajax opertion: Succesfull")
+                        },
+                        error: function(data){
+                            alert("Ajax opertion: failed")
+                        }
+                    })
                 }else{
-                    alert("fomr not valid")
+                    alert("fomr is not valid")
                 }
 
                 var firstname = $('#firstname').val()
                 var email = $('email').val()
                 var password = $('password').val()
             })
-            
         }
     </script>
 
