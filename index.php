@@ -26,7 +26,14 @@
             if (!isset($_SESSION['attempts'])) {
                 $_SESSION['attempts'] = 0;
             }
-            echo $_SESSION['attempts'];
+
+            if (!isset($_SESSION['isBlocked'])) {
+                $_SESSION['isBlocked'] = false;
+            }
+
+            if (!isset($_SESSION['timeOfBlock'])) {
+                $_SESSION['timeOfBlock'] = date('H:i');;
+            }
             ?>
 
             <p> <a href="./admin/adminLogin.php">Click here</a> to acces administrator panel</p>

@@ -1,3 +1,5 @@
+<html>
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -8,7 +10,7 @@
 </head>
 
 <body>
-    <form action="./user/loginUser.php" method="post">
+    <form action="./loginUser.php" method="post">
         <div class="login-box">
             <h1>Login</h1>
 
@@ -22,15 +24,17 @@
                 <input type="password" placeholder="password" name="password" value="" required>
             </div>
 
-            <?php
-            if (!isset($_SESSION['attempts'])) {
-                $_SESSION['attempts'] = 0;
-            }
-            echo $_SESSION['attempts'];
-            ?>
-
-            <p> <a href="./admin/adminLogin.php">Click here</a> to acces administrator panel</p>
-
+            <div class="row">
+                <div class="form-group col-6">
+                    <label>Enter Captcha</label>
+                    <input type="text" class="form-control" name="captcha" id="captcha" required>
+                </div>
+                <div class="form-group col-6">
+                    <label>Captcha Code</label>
+                    <img src="captcha.php" alt="PHP Captcha">
+                </div>
+            </div>
+            <p> <a href="../admin/adminLogin.php">Click here</a> to acces administrator panel</p>
             <input class="button" type="submit" name="login" value="Sign In">
         </div>
     </form>

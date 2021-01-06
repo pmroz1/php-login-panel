@@ -15,7 +15,7 @@ function test_input($data)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if ($loginAttempts > 1) {
+    if ($attempts > 1) {
         $captcha = true;
     }
 
@@ -26,20 +26,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $users = $stmt->fetchAll();
 
     foreach ($users as $user) {
-        if (($user['username'] == $username) &&
-            ($user['password'] == $password)
-        ) {
-            header("Location: userHome.php");
-        } else {
-            $_SESSION['attempts']++;
-            if ($_SESSION['attempts'] > 2) {
+        if (!$_SESSION['isBlocked']) {
+            if (($user['username'] == $username) &&
+                ($user['password'] == $password)
+            ) {
                 $_SESSION['attempts'] = 0;
-                header("Location: ../captcha.php");
+                header("Location: userHome.php");
+            } else {
+                $_SESSION['attempts']++;
+                if ($_SESSION['attempts'] > 1) {
+                    $_SESSION['attempts'] = 0;
+                    header("Location: captchaLogin.php");
+                }
+
+                if ($_SESSION['attempts']) {
+                    $_SESSION['isBlocked'] = true;
+                }
+                echo "<script language='javascript'>";
+                echo "alert('WRONG INFORMATION')";
+                echo "</script>";
+                die();
             }
-            echo "<script language='javascript'>";
-            echo "alert('WRONG INFORMATION')";
-            echo "</script>";
-            die();
+        } else {
+
+            if(($_SESSION['timeOfBan'] - date('h:i') > date('H:30')){
+                $_SESSION['timeOfBan'] = date('H:i');
+                $_SESSION['isBlocked'] = false;
+                $_SESSION['attempts'] = 0;
+            }
+            header("Location: sorry.php");
         }
     }
 }
