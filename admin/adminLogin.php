@@ -4,32 +4,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="login.css">
-    <title>Login Page</title>
+    <title>Admin Login</title>
 </head>
 
 <body>
-    <form action="./user/loginUser.php" method="post">
+    <form action="auth.php" method="post">
         <div class="login-box">
-            <h1>Login</h1>
+            <h1>Admin Panel Login</h1>
 
             <div class="textbox">
                 <i class="fa fa-user" aria-hidden="true"></i>
-                <input type="text" placeholder="username" name="username" value="" required>
+                <input type="text" placeholder="Adminname" name="adminname" value="" required>
             </div>
 
             <div class="textbox">
                 <i class="fa fa-lock" aria-hidden="true"></i>
-                <input type="password" placeholder="password" name="password" value="" required>
+                <input type="password" placeholder="Password" name="password" value="" required>
             </div>
 
-            <?php
-            if (!isset($_SESSION['attempts'])) {
-                $_SESSION['attempts'] = 0;
-            }
-            echo $_SESSION['attempts'];
-            ?>
-
-            <p> <a href="./admin/adminLogin.php">Click here</a> to acces administrator panel</p>
+            <p> <a href="../index.php">Click here</a> to normal user login</p>
 
             <input class="button" type="submit" name="login" value="Sign In">
         </div>
